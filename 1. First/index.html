@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+		<script
+			crossorigin
+			src="https://unpkg.com/react@16/umd/react.development.js"
+		></script>
+		<script
+			crossorigin
+			src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+		></script>
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+	</head>
+	<body>
+		<div id="root"></div>
+		<!--  실제 결과: <div id="root"><button>Like</button></div> -->
+
+		<script type="text/babel">
+			const e = React.createElement;
+
+			class Likebutton extends React.Component {
+				constructor(props) {
+					super(props);
+
+					//컴포넌트의 강점: state(상태) 상태는 바뀌는 부분이다.
+					//클릭 시 생성되는 태그에 대한 상태를 정의
+					this.state = {
+						liked: false,
+					};
+				}
+
+				render() {
+					//JSX: JS + XML
+					return (
+						<button
+							type="submit"
+							onClick={() => {
+								//setState : 태그의 상태를 변경
+								this.setState(
+									this.state.liked
+										? { liked: false }
+										: { liked: true },
+								);
+							}}
+						>
+							{this.state.liked ? 'Liked' : 'Like'}
+						</button>
+					);
+					// 	'button',
+					// 	{
+					// onClick: () => {
+					// 	//setState : 태그의 상태를 변경
+					// 	this.setState(
+					// 		this.state.liked
+					// 			? { liked: false }
+					// 			: { liked: true },
+					// 	);
+					// },
+					// 		type: 'submit',
+					// 	},
+					// 	this.state.liked ? 'Liked' : 'Like', // 상태에 따라 화면의 출력을 변경
+					// ); //(태그이름, 기능(함수), 텍스트)  <button>Like</button>
+				}
+			}
+		</script>
+		<script type="text/babel">
+			//Dom을 통해 html 파일에 render 메소드 실행
+			ReactDOM.render(
+				<div>
+					<Likebutton />
+					<br />
+					<Likebutton />
+					<br />
+					<Likebutton />
+					<br />
+					<Likebutton />
+					<br />
+				</div>,
+				document.querySelector('#root'),
+			);
+		</script>
+	</body>
+</html>
