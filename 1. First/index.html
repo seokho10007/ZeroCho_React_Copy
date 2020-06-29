@@ -3,14 +3,8 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>Document</title>
-		<script
-			crossorigin
-			src="https://unpkg.com/react@16/umd/react.development.js"
-		></script>
-		<script
-			crossorigin
-			src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
-		></script>
+		<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+		<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 	</head>
 	<body>
@@ -38,11 +32,7 @@
 							type="submit"
 							onClick={() => {
 								//setState : 태그의 상태를 변경
-								this.setState(
-									this.state.liked
-										? { liked: false }
-										: { liked: true },
-								);
+								this.setState(this.state.liked ? { liked: false } : { liked: true });
 							}}
 						>
 							{this.state.liked ? 'Liked' : 'Like'}

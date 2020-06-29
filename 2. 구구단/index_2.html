@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+		<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+	</head>
+	<body>
+		<div id="root"></div>
+
+		<!-- React Hooks 사용하기 -->
+		<!-- 초기에는 State를 사용하지 않는 컴포넌트는 함수 컴포넌트로 정의 -->
+		<!-- 지금은 함수 컴포넌트에서도 State와 ref를 사용할 수 있게 함 === Hooks -->
+		<!-- Hooks와 class는 똑같이 랜더링이 실행되지만 Hooks는 State가 바뀔 때 마다  함수들도 다시 실행 -->
+		<!-- 리액트에서 못쓰는 속성: class, for -->
+		<!-- class => classame, for => htmlFor -->
+		<!-- Hooks 또한 class처럼 prevState를 지원 -->
+		<script type="text/babel">
+			const GuGuDan = () => {
+				//Hooks의 state 설정
+				const [first, setFirst] = React.useState(Math.ceil(Math.random() * 9));
+				const [second, setSecond] = React.useState(Math.ceil(Math.random() * 9));
+				const [value, setValue] = React.useState('');
+				const [result, setResult] = React.useState('');
+				const inputRef = React.useRef(null);
+
+				const onChangeInput = (e) => {
+					setValue(e.target.value);
+				};
+
+				const onSubmitForm = (e) => {
+					e.preventDefault();
+
+					if (first * second == value) {
+						setResult((prevResult) => {
+							return '정답: ' + value;
+						});
+
+						setFirst(Math.ceil(Math.random() * 9));
+						setSecond(Math.ceil(Math.random() * 9));
+						setValue('');
+						inputRef.current.focus();
+					} else {
+						setResult('오답: ' + value);
+						setValue('');
+						inputRef.current.focus();
+					}
+				};
+				console.log('랜더링');
+				return (
+					<React.Fragment>
+						<div>
+							{first} 곱하기 {second} 는?{' '}
+						</div>
+						<form onSubmit={onSubmitForm}>
+							<input ref={inputRef} onChange={onChangeInput} type="number" value={value} />
+							<button className="s">입력</button>
+						</form>
+						<div id="result">{result}</div>
+					</React.Fragment>
+				);
+			};
+		</script>
+
+		<script type="text/babel">
+			ReactDOM.render(<GuGuDan />, document.querySelector('#root'));
+		</script>
+	</body>
+</html>
