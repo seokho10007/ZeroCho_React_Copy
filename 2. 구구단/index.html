@@ -4,82 +4,9 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>구구단</title>
-		<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-		<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 	</head>
 	<body>
 		<div id="root"></div>
-		<script type="text/babel">
-			class GuGuDan extends React.Component {
-				state = {
-					first: Math.ceil(Math.random() * 9),
-					second: Math.ceil(Math.random() * 9),
-					value: '',
-					result: '',
-				};
-
-				onSubmit = (e) => {
-					e.preventDefault();
-
-					if (this.state.first * this.state.second == this.state.value) {
-						this.setState((prevState) => {
-							return {
-								result: prevState.value + '는 정답',
-								first: Math.ceil(Math.random() * 9),
-								second: Math.ceil(Math.random() * 9),
-								value: '',
-							};
-						});
-						this.input.focus();
-					} else {
-						this.setState((prevState) => {
-							//만약 setState 내부에서 this.state를 사용해야 할 경우 함수형으로 변환 (저장되기 전의 상태 정보를 불러옴)
-							return {
-								result: prevState.value + '는 땡',
-								value: '',
-							};
-						});
-						this.input.focus();
-					}
-				};
-
-				onChange = (e) => {
-					this.setState({
-						value: e.target.value,
-					});
-				};
-
-				onRefInput = (e) => (this.input = e);
-
-				render() {
-					//setState 시 랜더링을 계속 실행 ==> 반복적인 사용은 메모리 성능을 감소시킴
-					console.log('렌더링');
-					return (
-						<React.Fragment>
-							<div>
-								{this.state.first} 곱하기 {this.state.second} 는?
-							</div>
-
-							<form onSubmit={this.onSubmit}>
-								<input
-									//ref: 의미없는 함수, 리엑트에서 태그에 접근하기 위한 방법
-									ref={this.onRefInput}
-									type="number"
-									value={this.state.value} /*싱글태그는 닫는태그를 꼭 넣어야함*/
-									onChange={this.onChange}
-								/>
-								<button>입력</button>
-							</form>
-							<div>{this.state.result}</div>
-						</React.Fragment>
-					);
-				}
-			}
-		</script>
-
-		<script type="text/babel">
-			ReactDOM.render(<GuGuDan />, document.querySelector('#root'));
-		</script>
+		<script src="./dist/app.js"></script>
 	</body>
 </html>
