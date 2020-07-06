@@ -1,7 +1,6 @@
 //필요한 패키지나 라이브러리 호출
 const React = require('react');
 const { useState, useRef } = React;
-const { Component } = React;
 
 const WordRealy = () => {
 	const [word, setWord] = useState('제로초');
