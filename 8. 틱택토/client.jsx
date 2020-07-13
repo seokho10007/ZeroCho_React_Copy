@@ -3,8 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { hot } from 'react-hot-loader/root';
 
-//반응속도 체크
-import ResponseCheck from './ResponseCheckHooks';
-const Hot = hot(ResponseCheck);
+// 틱택토
+import TicTacTo from './TicTacTo';
+const Hot = hot(TicTacTo);
 
 ReactDOM.render(<Hot />, document.querySelector('#root'));

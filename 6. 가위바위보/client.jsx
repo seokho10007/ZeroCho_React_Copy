@@ -3,12 +3,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { hot } from 'react-hot-loader/root';
 
-// //끝말잇기
-// import WordRealy from './WordRealy';
-// const Hot = hot(WordRealy);
-
-//반응속도 체크
-import ResponseCheck from './ResponseCheckHooks';
-const Hot = hot(ResponseCheck);
+//가위바위보
+import RSP from './RSPHooks';
+// import RSP from './RSP';
+const Hot = hot(RSP);
 
 ReactDOM.render(<Hot />, document.querySelector('#root'));
